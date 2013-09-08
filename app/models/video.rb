@@ -40,7 +40,6 @@ class Video < ActiveRecord::Base
       self.video_converted.store!(File.open(video_converted_url))
       File.delete(video_converted_url)
       self.estado = CONVERTED_STATE
-      self.converted_finished_at = Time.zone.now
       self.save
     end
   end

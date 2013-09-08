@@ -7,7 +7,6 @@
   <div class="center hero-unit">
     <div class="userVideos" style="margin: 0 0 0 60px;">
 	<% @user.videos.each do |video|  %>
-    <% if video.estado == 0 then next end %>
 	  <div class="uv">
 	      <div id="myElement<%= video.id %>">Loading the player...</div>
 	      <script type="text/javascript">
