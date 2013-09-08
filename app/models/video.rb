@@ -23,8 +23,8 @@ class Video < ActiveRecord::Base
   end
 
   def process_video
-    if self.converted_at.nil?
-      self.converted_at = Time.zone.now
+    if self.video_converted.url.nil?
+      self.updated_at = Time.zone.now
       self.video.cache_stored_file!
       video_url = self.video.current_path.to_s
       puts 'Video url: '+video_url

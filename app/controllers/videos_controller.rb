@@ -14,7 +14,6 @@ class VideosController < ApplicationController
       redirect_to user_path(@user)
     else
       flash[:error] = 'Error loading video.'
-      #render 'new'
       redirect_to user_path(@user)
     end
   end
