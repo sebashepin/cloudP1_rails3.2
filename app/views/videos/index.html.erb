@@ -1,0 +1,33 @@
+<div class="center hero-unit">
+
+<h2>
+Videos
+</h2>
+
+<%= will_paginate %>
+            <div class="userVideos">
+
+<ul class="videos">
+
+<% @videos.each do |video|  %>
+            <div class="uv">
+                <div id="myElement<%= video.id %>">Loading the player...</div>
+                <script type="text/javascript">
+                     jwplayer("myElement<%= video.id %>").setup({
+                          file: "<%= video.path %>",
+                          width: 320,
+                          height: 240,
+                          title: "<%= video.name %>"
+                      });
+                 </script>
+            </div>
+     <% end %>
+            </ul>
+
+<%= will_paginate %>
+
+
+
+
+</div>
+

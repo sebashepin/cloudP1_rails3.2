@@ -197,10 +197,12 @@ input {
   display:inline-block;
   float:left;
   margin: 10px;
-
+/*  min-height:240px;*/
 }
 
 
-.userVideo{
+.userVideos{
   display:block;
+  min-height:510px;
+  margin: 0 0 0 50px;
 }

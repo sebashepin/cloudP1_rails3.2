@@ -10,4 +10,9 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def videos
+    @videos=Video.paginate(page: params[:page])
+  end
+
 end
