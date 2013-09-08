@@ -20,6 +20,7 @@ gem 'delayed_job_active_record','0.4.3'
 gem 'delayed_job_web','1.1.2'
 
 gem "streamio-ffmpeg", "1.0.0"
+gem 'uuidtools', '2.1.4'
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
