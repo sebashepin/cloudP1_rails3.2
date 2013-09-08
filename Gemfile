@@ -19,6 +19,8 @@ gem "rmagick", "2.13.1"
 gem 'delayed_job_active_record','0.4.3'
 gem 'delayed_job_web','1.1.2'
 
+gem "streamio-ffmpeg", "1.0.0"
+
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
   # The following optional lines are part of the advanced setup.
