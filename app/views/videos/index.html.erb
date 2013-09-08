@@ -14,7 +14,7 @@ Videos
                 <div id="myElement<%= video.id %>">Loading the player...</div>
                 <script type="text/javascript">
                      jwplayer("myElement<%= video.id %>").setup({
-                          file: "<%= video.path %>",
+                          file: "<%= video.video_converted.url%>",
                           width: 320,
                           height: 240,
                           title: "<%= video.name %>"
