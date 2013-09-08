@@ -1,0 +1,41 @@
+<% provide(:title, @user.name) %>
+<h1>
+  <%= gravatar_for @user %>
+  <%= "#{@user.name}'s videos" %>
+</h1>
+<br/>
+    <% @user.videos.each do |video|  %>
+            <div class="userVideos">
+            <div class="uv">
+                <div id="myElement<%= video.id %>">Loading the player...</div>
+                <script type="text/javascript">
+                     jwplayer("myElement<%= video.id %>").setup({
+                          file: "<%= video.path %>",
+                          width: 320,
+                          height: 240,
+                          title: "<%= video.name %>"
+                      });
+                 </script>
+            </div>
+            </div>
+     <% end %>
+
+<br/>
+
+<div class="row">
+   <div class="span6 offset3">
+      <p>Upload more videos</p> 
+      <%= form_for(@user.videos.new, :user_id => @user.id, :url => videos_path(@user.id), :method => :post, :html => {:multipart => true, :class => "form-horizontal", :role => "form" }) do |f| %>
+	  <div class="form-group">
+	      <%= f.label :name, "Name *" %>
+	      <%= f.text_field :name, :maxlength=> 50, :class => "form-control", :required => true %>
+	  </div>
+	  <div class="form-group">
+	      <%= f.label :video, "Video *" %>
+	      <%= f.file_field :video %>
+	  </div>
+	  <div><%= f.hidden_field :user_id %></div>
+	  <button type="submit" class="btn btn-default">Enviar</button>
+       <% end %>
+    </div>
+</div>
