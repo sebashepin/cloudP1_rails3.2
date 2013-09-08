@@ -22,7 +22,10 @@ gem 'delayed_job_web','1.1.2'
 gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
 
+gem 'strong_parameters'
+
 group :development, :test do
+  gem 'rails-erd'
   gem 'rspec-rails', '2.13.1'
   # The following optional lines are part of the advanced setup.
   # gem 'guard-rspec', '2.5.0'
