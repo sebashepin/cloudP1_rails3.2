@@ -52,9 +52,8 @@ test:
   password: cloud
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: video_production
-  pool: 5
-  username: videocloud
-  password: cloud
+  adapter: mysql2
+  database: othercloud_production
+  username: root
+  password: rootroot
+  host: localhost
