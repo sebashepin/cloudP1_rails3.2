@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
-#ruby-gemset=railstutorial_rails_4_0
+#ruby-gemset=cloud
 
-gem 'pg', '0.15.1'
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.3.2.0'
@@ -23,6 +22,16 @@ gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
 
 gem 'strong_parameters'
+
+group :development do
+  gem 'pg', '0.15.1'
+end
+
+group :production do
+  gem 'mysql2'
+  gem 'activerecord-mysql-adapter'
+end
+
 
 group :development, :test do
   gem 'rails-erd'
