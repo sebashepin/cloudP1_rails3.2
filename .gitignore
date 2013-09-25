@@ -16,3 +16,10 @@
 
 # Ignore contents on public/uploads
 public/uploads
+
+# Ignore Gemfile.lock
+Gemfile.lock
+
+#ignore the connection keys
+awsConnection
+
