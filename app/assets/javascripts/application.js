@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require ./jwplayer/jwplayer.js
+//= require_directory ./jwplayer
 //= require_tree .
