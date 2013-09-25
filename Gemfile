@@ -29,7 +29,7 @@ end
 group :production do
   gem 'mysql2'
   gem 'activerecord-mysql-adapter'
-  gem 'fog'
+  gem 'fog','1.8.0'
 end
 
 
