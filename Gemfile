@@ -11,7 +11,6 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem "carrierwave", "0.7.1"
 #
-gem "carrierwave", "0.7.1"
 #gem 'protected_attributes'
 gem "rmagick", "2.13.1"
 #
@@ -30,6 +29,7 @@ end
 group :production do
   gem 'mysql2'
   gem 'activerecord-mysql-adapter'
+  gem 'fog'
 end
 
 
