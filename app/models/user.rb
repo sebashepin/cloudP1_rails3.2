@@ -7,8 +7,6 @@ class User
   field :password
   field :password_confirmation
   field :remember_token
-  field :video_ids
-  has_many :videos, dependent: :destroy
   #before_save { self.email = email.downcase }
 
   before_create :create_remember_token

@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.where(:id => params[:id]).first
+    @user = User.find(params[:id])
     #@videos = @user.videos.paginate(page: params[:page], :per_page => 4)
   end
 
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.where(:id => params[:id]).first
+    @user = User.find(params[:id])
   end
 
   def update

@@ -24,6 +24,7 @@ gem 'uuidtools', '2.1.4'
 
 gem 'strong_parameters'
 gem 'sqlite3'
+gem 'fog','1.8.0'
 
 group :development do
   gem 'pg', '0.15.1'

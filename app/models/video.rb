@@ -10,7 +10,6 @@ class Video
   field :video_converted
   field :estado
   validates :name, :presence => true
-  belongs_to :user
 
   mount_uploader :video, VideoUploader
   mount_uploader :video_converted, VideoConvertedUploader
