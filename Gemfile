@@ -10,6 +10,8 @@ gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem "carrierwave", "0.7.1"
+gem 'aws-sdk','~> 1.6.9'
+gem "dynamoid", :git => 'git://github.com/indykish/Dynamoid.git'
 #
 #gem 'protected_attributes'
 gem "rmagick", "2.13.1"
@@ -21,14 +23,13 @@ gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
 
 gem 'strong_parameters'
+gem 'sqlite3'
 
 group :development do
   gem 'pg', '0.15.1'
 end
 
 group :production do
-  gem 'mysql2'
-  gem 'activerecord-mysql-adapter'
   gem 'fog','1.8.0'
 end
 

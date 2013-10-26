@@ -1,17 +1,26 @@
-class Video < ActiveRecord::Base
-    attr_accessible :name, :video, :user_id, :path, :id, :video_converted
-    validates :name, :presence => true
-    belongs_to :user
+class Video 
+  include Dynamoid::Document
+  extend CarrierWave::Mount
+  #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
+  field :name
+  field :video
+  field :user_id
+  field :path
+  field :id
+  field :video_converted
+  field :estado
+  validates :name, :presence => true
+  belongs_to :user
 
   mount_uploader :video, VideoUploader
   mount_uploader :video_converted, VideoConvertedUploader
-  validates :estado, :presence => true
-  validates :video, :presence => true
+  #validates :estado, :presence => true
+  #validates :video, :presence => true
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   #validates :email, :presence => true, :format => { :with => email_regex }
 
-  scope :converted, where('videos.converted_at IS NOT NULL')
-  scope :ordered_desc_by_created_at, order('videos.created_at DESC')
+  #scope :converted, where('videos.converted_at IS NOT NULL')
+  #scope :ordered_desc_by_created_at, order('videos.created_at DESC')
 
   PROCESSING_STATE = 0
   CONVERTED_STATE = 1

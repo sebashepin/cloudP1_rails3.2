@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
   
-  before_filter :signed_in_user, only: [:index, :edit, :update, :show]
-  before_filter :correct_user,   only: [:edit, :update, :show]
+  #before_filter :signed_in_user, only: [:index, :edit, :update, :show]
+  #before_filter :correct_user,   only: [:edit, :update, :show]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.all
+    #@users = User.paginate(page: params[:page])
   end
 
 
   def show
-    @user = User.find(params[:id])
+    @user = User.where(:id => params[:id]).first
     #@videos = @user.videos.paginate(page: params[:page], :per_page => 4)
   end
 
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.where(:id => params[:id]).first
   end
 
   def update
@@ -57,7 +58,7 @@ class UsersController < ApplicationController
     end
     
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.where(email: :email,password: :password)
       redirect_to(root_url) unless current_user?(@user)
     end
 end

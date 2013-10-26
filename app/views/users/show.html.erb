@@ -44,7 +44,7 @@
 <div class="row">
    <div class="span6 offset3">
       <p>Upload more videos</p> 
-      <%= form_for(@user.videos.new, :user_id => @user.id, :url => videos_path(@user.id), :method => :post, :html => {:multipart => true, :class => "form-horizontal", :role => "form" }) do |f| %>
+      <%= form_for(@user.videos.create, :user_id => @user.id, :url => videos_path(@user.id), :method => :post, :html => {:multipart => true, :class => "form-horizontal", :role => "form" }) do |f| %>
 	  <div class="form-group">
 	      <%= f.label :name, "Name *" %>
 	      <%= f.text_field :name, :maxlength=> 50, :class => "form-control", :required => true %>
