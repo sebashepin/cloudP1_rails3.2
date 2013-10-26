@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 #ruby-gemset=cloud
 
+gem 'dalli'
+
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.3.2.0'
