@@ -1,6 +1,6 @@
 Cloud32::Application.configure do
   # Leslie: To store session in memcache
-  #config.cache_store = :dalli_store, "sessionvm.0e6avx.0001.use1.cache.amazonaws.com:11211"
+  config.cache_store = :dalli_store, "sessionvm.0e6avx.0001.use1.cache.amazonaws.com:11211"
 
   # Settings specified here will take precedence over those in config/application.rb
 

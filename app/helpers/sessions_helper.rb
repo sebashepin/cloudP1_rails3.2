@@ -2,12 +2,13 @@ require 'dalli'
 module SessionsHelper
 
   def sign_in(user)
-    remember_token = User.new_remember_token
-    cookies.permanent[:remember_token] = remember_token
+    un_remember_token = User.new_remember_token
+    cookies.permanent[:remember_token] = un_remember_token
     options = { :namespace => "sessionsvm", :compress => true }
     dallic = Dalli::Client.new('sessionvm.0e6avx.0001.use1.cache.amazonaws.com:11211', options)
-    dallic.set('remember_token' + remember_token, user.id)
-    user.update_attribute(:remember_token, User.encrypt(remember_token))
+    encrypted = User.encrypt(un_remember_token)
+    dallic.set(encrypted, user.id)
+    user.update_attribute(:remember_token, encrypted)
     self.current_user = user
   end
 
