@@ -3,6 +3,7 @@ ruby '2.0.0'
 #ruby-gemset=cloud
 
 gem 'dalli'
+gem 'sqlite3'
 
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
