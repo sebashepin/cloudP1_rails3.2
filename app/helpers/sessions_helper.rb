@@ -21,8 +21,11 @@ module SessionsHelper
   end
 
   def current_user
-    remember_token = User.encrypt(cookies[:remember_token])
-    @current_user ||= User.where(remember_token: remember_token).first
+    #remember_token = User.encrypt(cookies[:remember_token])
+    options = { :namespace => "sessionsvm", :compress => true }
+    dallic = Dalli::Client.new('sessionvm.0e6avx.0001.use1.cache.amazonaws.com:11211', options)
+    userid = dallic.get(User.encrypt(cookies[:remember_token]))
+    @current_user ||= User.where(id: userid).first
   end
 
   def current_user?(user)
