@@ -4,6 +4,10 @@ ruby '2.0.0'
 
 gem 'dalli'
 gem 'sqlite3'
+gem 'aws-s3'
+gem 'aws-ses', :require => 'aws/ses'
+gem 'delayed_job'
+gem 'delayed_job_sqs'
 
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
