@@ -7,7 +7,3 @@ development:
     access_key_id: AKIAINTF5A3M7XYKXHAQ
     secret_access_key: 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
     dynamo_db_endpoint: dynamodb.us-east-1.amazonaws.com
-
-[aws]
-  access_key_id: AKIAINTF5A3M7XYKXHAQ
-  secret_access_key: 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

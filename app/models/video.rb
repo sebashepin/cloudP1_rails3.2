@@ -27,7 +27,11 @@ class Video
   after_save :convert_video
 
   def convert_video
-    self.delay.process_video
+    #self.delay.process_video
+    #this fucking shit wasnt working wiuth queues so it had to be done manually    
+    @sqs=AWS::SQS.new
+    @queue=@sqs.queues.create("queue-videocloud")
+    @queue.send_message(PROCESSING_STATE+";"+self.id+";")
   end
 
   def process_video
