@@ -34,6 +34,9 @@ gem 'strong_parameters'
 gem 'sqlite3'
 gem 'fog','1.8.0'
 
+gem 'carrierwave-dynamoid', :git => 'git://github.com/axomi/carrierwave-dynamoid.git', :require => 'carrierwave/dynamoid'
+#gem 'dynamoid-paperclip'
+
 group :development do
   gem 'pg', '0.15.1'
 end
