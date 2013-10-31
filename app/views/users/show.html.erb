@@ -44,6 +44,7 @@
 <div class="row">
    <div class="span6 offset3">
     <p>Upload more videos</p> 
+    <% @video = Video.new %>
     <%= form_for( @video, :user_id => @user.id) do |f| %>
         <% if @video.errors.any? %>
             <div id="error_explanation">
