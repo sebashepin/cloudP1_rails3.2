@@ -35,6 +35,7 @@ gem 'sqlite3'
 gem 'fog','1.8.0'
 
 gem 'carrierwave-dynamoid', :git => 'git://github.com/axomi/carrierwave-dynamoid.git', :require => 'carrierwave/dynamoid'
+gem "right_aws"
 #gem 'dynamoid-paperclip'
 
 group :development do
