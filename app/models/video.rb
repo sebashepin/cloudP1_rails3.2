@@ -1,18 +1,23 @@
 class Video 
   include Dynamoid::Document
-  extend CarrierWave::Mount
+  include Dynamoid::Paperclip
+ # extend CarrierWave::Mount
   #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
   field :name
   field :video
   field :user_id
   field :path
   field :id
-  field :video_converted
+  #field :video_converted
   field :estado
+  field :video_content_type
+  field :video_file_size
+  field :video_updated_at
+  field :video_file_name
   validates :name, :presence => true
 
-  mount_uploader :video, VideoUploader
-  mount_uploader :video_converted, VideoConvertedUploader
+  #has_dynamoid_attached_file :video
+  
   #validates :estado, :presence => true
   #validates :video, :presence => true
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -26,12 +31,15 @@ class Video
 
   after_save :convert_video
 
+  has_dynamoid_attached_file :video, :storage => :s3, :s3_credentials => "#{Rails.root}/config/aws.yml", :bucket => "co.videocloud.bucket"
+  validates_attachment_presence :video
+
   def convert_video
     #self.delay.process_video
     #this fucking shit wasnt working wiuth queues so it had to be done manually    
     @sqs=AWS::SQS.new
     @queue=@sqs.queues.create("queue-videocloud")
-    @queue.send_message(PROCESSING_STATE+";"+self.id+";")
+    @queue.send_message(self.id)
   end
 
   def process_video

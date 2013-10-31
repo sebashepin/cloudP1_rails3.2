@@ -10,11 +10,13 @@ class VideosController < ApplicationController
   end
 
   def create
+    puts params[:video]
     @video = Video.new(params[:video])
     @video.estado = Video::PROCESSING_STATE
     puts "Userid"
     @user = User.where(id: @video.user_id).first
     puts @user
+
     if @video.save
       @video.update_attributes(path: "#{@video.video}")
       flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'

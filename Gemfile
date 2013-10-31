@@ -16,7 +16,9 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem "carrierwave", "0.7.1"
+gem 'paperclip'
+gem 'dynamoid-paperclip'
+#gem "carrierwave", "0.7.1"
 #gem 'aws-sdk','~> 1.6.9'
 gem 'aws-sdk', '= 1.11.1'
 gem "dynamoid", :git => 'git://github.com/indykish/Dynamoid.git'
