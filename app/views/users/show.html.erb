@@ -45,7 +45,7 @@
    <div class="span6 offset3">
     <p>Upload more videos</p> 
     <% @video = Video.new %>
-    <%= form_for( @video, :user_id => @user.id) do |f| %>
+    <%= form_for( @video, :user_id => @user.id , :html => {:multipart => true}) do |f| %>
         <% if @video.errors.any? %>
             <div id="error_explanation">
             <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being saved:</h2>
