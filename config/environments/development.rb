@@ -34,4 +34,14 @@ Cloud32::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => 'co.videocloud.bucket',
+    :access_key_id => 'AKIAINTF5A3M7XYKXHAQ',
+    :secret_access_key => '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' 
+    }
+  }
+
 end
