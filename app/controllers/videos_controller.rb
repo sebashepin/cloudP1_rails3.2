@@ -4,14 +4,9 @@ class VideosController < ApplicationController
     @video = Video.new
   end
 
-  def new(user_id)
-    @video = Video.new
-    @video.user_id = user_id
-  end
-
   def create
-    puts params[:video]
-    @video = Video.new(params[:video])
+    puts video_params
+    @video = Video.new(video_params)
     @video.estado = Video::PROCESSING_STATE
     puts "Userid"
     @user = User.where(id: @video.user_id).first
@@ -30,5 +25,9 @@ class VideosController < ApplicationController
 
   def index
     #@videos = Video.paginate(page: params[:page] , :per_page => 4)
+  end
+
+  def video_params
+      params.require(:video).permit(:name, :video, :video_file_name)
   end
 end
