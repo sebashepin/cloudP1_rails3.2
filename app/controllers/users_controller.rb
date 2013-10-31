@@ -44,6 +44,38 @@ class UsersController < ApplicationController
     end
   end
 
+  def upload
+    @uvideo = Video.new
+    @uvideo.name = params[:name]
+    @uvideo.user_id = params[:user_id]
+    puts "EL id del usuario subiendo el video es:"
+    puts params[:user_id]
+    @uvideo.estado =  Video::PROCESSING_STATE
+    uploaded_io = params[:file]
+    path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+
+    File.open(path, 'wb:ASCII-8BIT') do |file|
+      file.write(uploaded_io.read)
+    end
+
+    uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
+    @uvideo.file = uploadPath
+    suffix = File.absolute_path(path).split(".")[1]
+    #target_filename = File.basename(path, suffix) + "mp4"
+    #destPath = "public/mp4/" + target_filename
+    #@uvideo.target_file = destPath
+    #Rails.root.join('public', 'mp4', target_filename)
+    key = File.basename(path)
+    AWS::S3.new.buckets['co.videocloud.bucket'].objects[key].write(:file => path)
+
+    if @uvideo.save
+      flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
+      redirect_to user_path(@uvideo.user_id)
+
+    end
+  end
+
+
   private
 
     def user_params
@@ -61,4 +93,6 @@ class UsersController < ApplicationController
       @user = User.where(email: :email,password: :password)
       redirect_to(root_url) unless current_user?(@user)
     end
+
+
 end

@@ -6,8 +6,6 @@ gem 'dalli'
 gem 'sqlite3'
 gem 'aws-s3'
 gem 'aws-ses', :require => 'aws/ses'
-gem 'delayed_job'
-gem 'delayed_job_sqs'
 
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
@@ -18,7 +16,6 @@ gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
 gem 'paperclip'
 gem 'dynamoid-paperclip'
-#gem "carrierwave", "0.7.1"
 #gem 'aws-sdk','~> 1.6.9'
 gem 'aws-sdk', '= 1.11.1'
 gem "dynamoid", :git => 'git://github.com/indykish/Dynamoid.git'
@@ -36,8 +33,6 @@ gem 'strong_parameters'
 gem 'sqlite3'
 gem 'fog','1.8.0'
 
-gem 'carrierwave-dynamoid', :git => 'git://github.com/axomi/carrierwave-dynamoid.git', :require => 'carrierwave/dynamoid'
-gem "right_aws"
 #gem 'dynamoid-paperclip'
 
 group :development do

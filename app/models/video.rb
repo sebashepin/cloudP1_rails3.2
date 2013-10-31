@@ -1,19 +1,20 @@
 class Video 
   include Dynamoid::Document
-  include Dynamoid::Paperclip
+  #include Dynamoid::Paperclip
  # extend CarrierWave::Mount
   #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
   field :name
-  field :video
+  #field :video
   field :user_id
   field :path
   field :id
   #field :video_converted
   field :estado
-  field :video_content_type
-  field :video_file_size
-  field :video_updated_at
-  field :video_file_name
+  #field :video_content_type
+  #field :video_file_size
+  #field :video_updated_at
+  #field :video_file_name
+  field :file
   validates :name, :presence => true
 
   #has_dynamoid_attached_file :video
@@ -31,8 +32,8 @@ class Video
 
   after_save :convert_video
 
-  has_dynamoid_attached_file :video, :storage => :s3, :s3_credentials => "#{Rails.root}/config/aws.yml", :bucket => "co.videocloud.bucket"
-  validates_attachment_presence :video
+  #has_dynamoid_attached_file :video, :storage => :s3, :s3_credentials => "#{Rails.root}/config/aws.yml", :bucket => "co.videocloud.bucket"
+  #validates_attachment_presence :video
 
   def convert_video
     #self.delay.process_video

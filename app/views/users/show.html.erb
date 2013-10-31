@@ -42,20 +42,19 @@
 </div>
 
 <div class="row">
-   <div class="span6 offset3">
-      <p>Upload more videos</p> 
-      <%= form_tag(Video.new(user_id: @user.id), :user_id => @user.id, :url => videos_path(@user.id), :method => :post, 
-                                                               :html => {:multipart => true }) do |f| %>
-	  <div class="form-group">
-	      <%= f.label :name, "Name *" %>
-	      <%= f.text_field :name, :maxlength=> 50, :class => "form-control", :required => true %>
-	  </div>
-	  <div class="form-group">
-	      <%= f.label :video, "Video *" %>
-	      <%= f.file_field :video %>
-	  </div>
-	  <div><%= f.hidden_field :user_id %></div>
-	  <button type="submit" class="btn btn-default">Enviar</button>
-       <% end %>
-    </div>
+<li><a href="/video/upload">Upload Videos</a></li>
+<div class="hero-unit">
+        <%= form_tag( {:action => 'upload'}, :multipart => 'true') do  %>
+        <%= label_tag 'Name', nil, :for => :name %>
+        <%= text_field_tag :name %>
+        <%= label_tag 'File Path', nil, :for => :file %>
+        <%= file_field_tag :file %>
+        <%= hidden_field_tag :user_id, @user.id %>
+        <br/>
+        <%= submit_tag "Submit" %>
+
+    <% end %>
+</div>
+
+
 </div>
