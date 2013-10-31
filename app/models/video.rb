@@ -31,7 +31,7 @@ class Video
     #this fucking shit wasnt working wiuth queues so it had to be done manually    
     @sqs=AWS::SQS.new
     @queue=@sqs.queues.create("queue-videocloud")
-    @queue.send_message(PROCESSING_STATE+";"+self.id+";")
+    @queue.send_message(PROCESSING_STATE+";"+self.id.to_s+";")
   end
 
   def process_video
