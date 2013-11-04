@@ -48,8 +48,8 @@ class UsersController < ApplicationController
     @uvideo = Video.new
     @uvideo.name = params[:name]
     @uvideo.user_id = params[:user_id]
-    puts "EL id del usuario subiendo el video es:"
-    puts params[:user_id]
+    #puts "EL id del usuario subiendo el video es:"
+    #puts params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
     uploaded_io = params[:file]
     path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
@@ -66,7 +66,13 @@ class UsersController < ApplicationController
     #@uvideo.target_file = destPath
     #Rails.root.join('public', 'mp4', target_filename)
     key = File.basename(path)
-    AWS::S3.new.buckets['co.videocloud.bucket'].objects[key].write(:file => path)
+    puts "Key"
+    puts key
+    puts "Path"
+    puts path
+    #AWS::S3::S3Object.store(Rails.root.join('public', 'uploads', @uvideo.user_id,key), :file => path, "co.videocloud.bucket")
+    AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
+
 
     if @uvideo.save
       flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
