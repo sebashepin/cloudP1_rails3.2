@@ -3,9 +3,6 @@ ruby '2.0.0'
 #ruby-gemset=cloud
 
 gem 'dalli'
-gem 'sqlite3'
-gem 'aws-s3'
-gem 'aws-ses', :require => 'aws/ses'
 
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
@@ -14,12 +11,6 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '3.0.4'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem 'paperclip'
-gem 'dynamoid-paperclip'
-#gem 'aws-sdk','~> 1.6.9'
-gem 'aws-sdk', '= 1.11.1'
-gem "dynamoid", :git => 'git://github.com/indykish/Dynamoid.git'
-#
 #gem 'protected_attributes'
 gem "rmagick", "2.13.1"
 #
@@ -30,7 +21,6 @@ gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
 
 gem 'strong_parameters'
-gem 'sqlite3'
 gem 'fog','1.8.0'
 
 #gem 'dynamoid-paperclip'
@@ -66,7 +56,7 @@ group :test do
   # gem 'growl', '1.0.3'
 
   # Uncomment these lines on Linux.
-  # gem 'libnotify', '0.8.0'
+  gem 'libnotify', '0.8.0'
 
   # Uncomment these lines on Windows.
   # gem 'rb-notifu', '0.0.4'
