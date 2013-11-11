@@ -29,13 +29,13 @@ gem 'fog','1.8.0'
 
 #gem 'dynamoid-paperclip'
 
-group :development do
-  gem 'pg', '0.15.1'
-end
+#group :development do
+#  gem 'pg', '0.15.1'
+#end
 
-group :production do
-  gem 'fog','1.8.0'
-end
+#group :production do
+#  gem 'fog','1.8.0'
+#end
 
 
 group :development, :test do
