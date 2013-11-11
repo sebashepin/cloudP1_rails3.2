@@ -14,8 +14,12 @@ gem 'bootstrap-will_paginate', '0.0.9'
 #gem 'protected_attributes'
 gem "rmagick", "2.13.1"
 #
-gem 'delayed_job_active_record','0.4.3'
-gem 'delayed_job_web','1.1.2'
+#gem 'delayed_job_active_record','0.4.3'
+#gem 'delayed_job_web','1.1.2'
+
+gem 'mongo'
+gem 'mongoid'
+gem 'bson_ext'
 
 gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
