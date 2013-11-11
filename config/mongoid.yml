@@ -18,6 +18,9 @@ test:
         consistency: :strong
         max_retries: 1
         retry_interval: 0  
+  options:
+    raise_not_found_error: false
+
 
 production:
   sessions:
@@ -26,3 +29,5 @@ production:
       options:
         skip_version_check: true
         safe: true
+  options:
+    raise_not_found_error: false
