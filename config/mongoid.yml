@@ -1,18 +1,22 @@
-testing:
-  sessions:
-    default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
-      options:
-        skip_version_check: true
-        safe: true
-
 development:
   sessions:
     default:
-      uri: <%= ENV['MONGOHQ_URL'] %>
+      database: videos_development
+      hosts:
+        - localhost:27017
       options:
-        skip_version_check: true
-        safe: true
+  options:
+
+test:
+  sessions:
+    default:
+      database: videos_test
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
+        max_retries: 1
+        retry_interval: 0  
 
 production:
   sessions:
