@@ -1,5 +1,5 @@
 class User 
-  include Dynamoid::Document
+  include Mongoid::Document
   #lets see if this next line doesnt fuck up
   #attr_accessible :name, :email, :password, :password_confirmation
   field :name

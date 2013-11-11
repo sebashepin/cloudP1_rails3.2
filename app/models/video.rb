@@ -1,5 +1,5 @@
 class Video 
-  include Dynamoid::Document
+  include Mongoid::Document
   #include Dynamoid::Paperclip
  # extend CarrierWave::Mount
   #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
