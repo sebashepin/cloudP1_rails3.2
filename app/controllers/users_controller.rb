@@ -93,7 +93,6 @@ class UsersController < ApplicationController
       @uvideo.file=params[:file]
       #@uvideo = Video.new(params[:file])
       @uvideo.estado = Video::PROCESSING_STATE
-      @user = @uvideo.user
       uploaded_io = params[:file]
       path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
 
