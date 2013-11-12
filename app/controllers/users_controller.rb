@@ -87,7 +87,11 @@ class UsersController < ApplicationController
 #  end
 
     def upload
-      @uvideo = Video.new(params[:file])
+      @uvideo = Video.new
+      @uvideo.name = params[:name]
+      @uvideo.user_id = params[:user_id]
+      @uvideo.file=params[:file]
+      #@uvideo = Video.new(params[:file])
       @uvideo.estado = Video::PROCESSING_STATE
       @user = @uvideo.user
       uploaded_io = params[:file]

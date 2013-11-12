@@ -51,9 +51,7 @@
         <%= file_field_tag :file %>
         <%= hidden_field_tag :user_id, @user.id %>
         <br/>
-        <div class: "btn btn-large btn-primary"> 
-            <%= submit_tag "Submit" %>
-        </div>
+        <%= submit_tag "Submit" :class => 'btn btn-large btn-primary' %>
     <% end %>
 </div>
 
