@@ -42,7 +42,7 @@
 </div>
 
 <div class="row">
-<li><a href="/video/upload">Upload Videos</a></li>
+<!-- <li><a href="/video/upload">Upload Videos</a></li> -->
 <div class="hero-unit">
         <%= form_tag( {:action => 'upload'}, :multipart => 'true') do  %>
         <%= label_tag 'Name', nil, :for => :name %>
@@ -51,8 +51,9 @@
         <%= file_field_tag :file %>
         <%= hidden_field_tag :user_id, @user.id %>
         <br/>
-        <%= submit_tag "Submit" %>
-
+        <div class: "btn btn-large btn-primary"> 
+            <%= submit_tag "Submit" %>
+        </div>
     <% end %>
 </div>
 

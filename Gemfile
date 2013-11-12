@@ -21,6 +21,8 @@ gem 'mongo'
 gem 'mongoid'
 gem 'bson_ext'
 
+
+gem 'carrierwave'
 gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
 
