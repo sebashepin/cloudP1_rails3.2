@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @uvideo.user_id = params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
     uploaded_io = params[:file]
-    path = "public/uploads/"+uploaded_io.original_filename)
+    path = "public/uploads/"+uploaded_io.original_filename
 
     #File.open(path, 'wb:ASCII-8BIT') do |file|
     #  file.write(uploaded_io.read)
