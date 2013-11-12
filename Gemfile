@@ -21,9 +21,6 @@ gem 'mongo'
 gem 'mongoid'
 gem 'bson_ext'
 
-gem 'cloudfiles'
-gem 'paperclip-cloudfiles'
-
 gem "streamio-ffmpeg", "1.0.0"
 gem 'uuidtools', '2.1.4'
 

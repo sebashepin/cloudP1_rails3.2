@@ -45,70 +45,49 @@ class UsersController < ApplicationController
     end
   end
 
-#  def upload
-#    @uvideo = Video.new
-#    @uvideo.name = params[:name]
-#    @uvideo.user_id = params[:user_id]
-#    #puts "EL id del usuario subiendo el video es:"
-#    #puts params[:user_id]
-#    @uvideo.estado =  Video::PROCESSING_STATE
-#    uploaded_io = params[:file]
-#    path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+  def upload
+    @uvideo = Video.new
+    @uvideo.name = params[:name]
+    @uvideo.user_id = params[:user_id]
+    @uvideo.estado =  Video::PROCESSING_STATE
+    uploaded_io = params[:file]
+    path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
 
-#    File.open(path, 'wb:ASCII-8BIT') do |file|
-#      file.write(uploaded_io.read)
-#    end
+    #File.open(path, 'wb:ASCII-8BIT') do |file|
+    #  file.write(uploaded_io.read)
+    #end
 
-#    uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
-#    @uvideo.file = uploadPath
-#    suffix = File.absolute_path(path).split(".")[1]
-#    key = File.basename(path)
-#    puts "Key"
-#    puts key
-#    puts "Path"
-#    puts path
-#    service = Fog::Storage.new({
-#      :provider             => 'Rackspace',
-#      :rackspace_username   => ENV['RACKSPACE_API_USER'],
-#      :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
-#    })
+    uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
+    @uvideo.file = uploadPath
+    suffix = File.absolute_path(path).split(".")[1]
+    key = File.basename(path)
+    puts "Key"
+    puts key
+    puts "Path"
+    puts path
+    service = Fog::Storage.new({
+      :provider             => 'Rackspace',
+      :rackspace_username   => ENV['RACKSPACE_API_USER'],
+      :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
+    })
+ 
+    container = service.directories.get('videostorage')
 
-#    container = service.directories.get "videostorage"
-#    container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open(path)
-
-#    #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
-
-
-#   if @uvideo.save
-#      flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
-#      redirect_to user_path(@uvideo.user_id)
-
-#    end
-#  end
-
-    def upload
-      @uvideo = Video.new
-      #@uvideo = Video.create(params) 
-      @uvideo.name = params[:name]
-      @uvideo.user_id = params[:user_id]
-      @uvideo.file=params[:file]
-      #@uvideo.file=File.open(:file)
-      #@uvideo = Video.new(params[:file])
-      @uvideo.estado = Video::PROCESSING_STATE
-      uploaded_io = params[:file]
-      path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
-      
-
-
-      if @uvideo.save!
-        @uvideo.update_attributes(path: path.to_s)
-        flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
-        redirect_to user_path(@uvideo.user_id)
-      else
-        flash[:error] = 'Error loading video.'
-        redirect_to user_path(@uvideo.user_id)
-      end
+    File.open(path, 'rwb:ASCII-8BIT') do |io|
+      directory.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
+                              :body => io)
     end
+
+    #container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open(path)
+    #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
+   
+
+    if @uvideo.save
+      flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
+      redirect_to user_path(@uvideo.user_id)
+    end
+  end
+
 
 
   private

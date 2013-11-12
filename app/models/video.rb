@@ -18,11 +18,6 @@ class Video < ActiveRecord::Base
   field :file
   validates :name, :presence => true
 
-  has_attached_file :file
-     :storage => :cloud_files,
-     :cloudfiles_credentials =>  "#{RAILS_ROOT}/config/rackspace.yml",
-     :path => ":attachment/:id/:timestamp_:style.:extension"
-
   #has_dynamoid_attached_file :video
   
   #validates :estado, :presence => true
