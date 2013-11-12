@@ -71,7 +71,7 @@ class UsersController < ApplicationController
       :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
     })
  
-    container = service.directories.get('videostorage')
+    container = service.directories.get('videofiles')
 
     File.open(path, 'rwb:ASCII-8BIT') do |io|
       directory.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
