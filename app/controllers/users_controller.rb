@@ -65,24 +65,25 @@ class UsersController < ApplicationController
     puts key
     puts "Path"
     puts path
-    service = Fog::Storage.new(
-      :provider             => 'Rackspace',
-      :rackspace_username   => ENV['RACKSPACE_API_USER'],
-      :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
-    )
- 
-    container = service.directories.get('videofiles')
-
-    File.open(path, 'rb') do |io|
-      directory.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
-                              :body => io)
-    end
 
     #container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open(path)
     #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
    
 
     if @uvideo.save
+      service = Fog::Storage.new(
+        :provider             => 'Rackspace',
+        :rackspace_username   => ENV['RACKSPACE_API_USER'],
+        :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
+      )
+
+      container = service.directories.get('videofiles')
+
+      File.open(path, 'rb') do |io|
+        directory.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
+                                :body => io)
+      end
+
       flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
       redirect_to user_path(@uvideo.user_id)
     end
