@@ -87,15 +87,18 @@ class UsersController < ApplicationController
 #  end
 
     def upload
-      #@uvideo = Video.new
-      @uvideo = Video.create(params) 
-      #@uvideo.name = params[:name]
-      #@uvideo.user_id = params[:user_id]
-      #@uvideo.file=params[:file]
+      @uvideo = Video.new
+      #@uvideo = Video.create(params) 
+      @uvideo.name = params[:name]
+      @uvideo.user_id = params[:user_id]
+      @uvideo.file=params[:file]
+      @uvideo.file=File.open(:file.path)
       #@uvideo = Video.new(params[:file])
       @uvideo.estado = Video::PROCESSING_STATE
       uploaded_io = params[:file]
       path = Rails.root.join('public', 'uploads', uploaded_io.original_filename)
+      
+
 
       if @uvideo.save
         puts "****************************at least it seems to get here"
