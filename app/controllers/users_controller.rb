@@ -68,13 +68,13 @@ class UsersController < ApplicationController
     puts "Path"
     puts path
     service = Fog::Storage.new({
-      :provider                 => 'Rackspace',
-      :rackspace_username        =>  <%= ENV['RACKSPACE_API_USER'] %>,
-      :rackspace_api_key    => <%= ENV['RACKSPACE_API_KEY'] %>
+      :provider             => 'Rackspace',
+      :rackspace_username   => ENV['RACKSPACE_API_USER'],
+      :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
     })
 
     container = service.directories.get "videostorage"
-    container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open :file => path
+    container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open(path)
 
     #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
 
