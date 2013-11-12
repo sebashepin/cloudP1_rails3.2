@@ -1,7 +1,7 @@
 class Video 
   include Mongoid::Document
   #include Dynamoid::Paperclip
- # extend CarrierWave::Mount
+  extend CarrierWave::Mount
   #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
   field :name
   #field :video
@@ -38,9 +38,9 @@ class Video
   def convert_video
     #self.delay.process_video
     #this fucking shit wasnt working wiuth queues so it had to be done manually    
-    @sqs=AWS::SQS.new
-    @queue=@sqs.queues.create("queue-videocloud")
-    @queue.send_message(PROCESSING_STATE.to_s+";"+self.id.to_s+";")
+    #@sqs=AWS::SQS.new
+    #@queue=@sqs.queues.create("queue-videocloud")
+    #@queue.send_message(PROCESSING_STATE.to_s+";"+self.id.to_s+";")
   end
 
   def process_video
