@@ -1,4 +1,4 @@
-class Video < ActiveRecord::Base 
+class Video
   include Mongoid::Document
   #include Dynamoid::Paperclip
   #extend CarrierWave::Mount
