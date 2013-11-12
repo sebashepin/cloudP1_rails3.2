@@ -1,3 +1,4 @@
+require 'fog'
 class UsersController < ApplicationController
   
   #before_filter :signed_in_user, only: [:index, :edit, :update, :show]
@@ -61,17 +62,21 @@ class UsersController < ApplicationController
     uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
     @uvideo.file = uploadPath
     suffix = File.absolute_path(path).split(".")[1]
-    #target_filename = File.basename(path, suffix) + "mp4"
-    #destPath = "public/mp4/" + target_filename
-    #@uvideo.target_file = destPath
-    #Rails.root.join('public', 'mp4', target_filename)
     key = File.basename(path)
     puts "Key"
     puts key
     puts "Path"
     puts path
-    #AWS::S3::S3Object.store(Rails.root.join('public', 'uploads', @uvideo.user_id,key), :file => path, "co.videocloud.bucket")
-    AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
+    service = Fog::Storage.new({
+      :provider                 => 'Rackspace',
+      :rackspace_username        =>  <%= ENV['RACKSPACE_API_USER'] %>,
+      :rackspace_api_key    => <%= ENV['RACKSPACE_API_KEY'] %>
+    })
+
+    container = service.directories.get "videostorage"
+    container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open :file => path
+
+    #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
 
 
     if @uvideo.save
