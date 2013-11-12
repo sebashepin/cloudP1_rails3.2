@@ -92,7 +92,7 @@ class UsersController < ApplicationController
       @uvideo.name = params[:name]
       @uvideo.user_id = params[:user_id]
       @uvideo.file=params[:file]
-      @uvideo.file=File.open(:file)
+      #@uvideo.file=File.open(:file)
       #@uvideo = Video.new(params[:file])
       @uvideo.estado = Video::PROCESSING_STATE
       uploaded_io = params[:file]
@@ -100,8 +100,7 @@ class UsersController < ApplicationController
       
 
 
-      if @uvideo.save
-        puts "****************************at least it seems to get here"
+      if @uvideo.save!
         @uvideo.update_attributes(path: path.to_s)
         flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
         redirect_to user_path(@uvideo.user_id)
