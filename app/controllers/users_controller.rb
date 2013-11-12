@@ -65,11 +65,11 @@ class UsersController < ApplicationController
     puts key
     puts "Path"
     puts path
-    service = Fog::Storage.new({
+    service = Fog::Storage.new(
       :provider             => 'Rackspace',
       :rackspace_username   => ENV['RACKSPACE_API_USER'],
       :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
-    })
+    )
  
     container = service.directories.get('videofiles')
 
