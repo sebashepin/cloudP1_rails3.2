@@ -16,7 +16,7 @@ class Video
   #field :video_updated_at
   #field :video_file_name
   #field :file
-  mount_uploader :file VideoUploader
+  mount_uploader :file, VideoUploader
   validates :name, :presence => true
 
   #has_dynamoid_attached_file :video
