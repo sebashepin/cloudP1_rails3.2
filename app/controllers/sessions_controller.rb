@@ -23,9 +23,9 @@ class SessionsController < ApplicationController
   
   def sign_out
     id=self.current_user.id
-    options = { :namespace => "sessionsvm", :compress => true }
-    dallic = Dalli::Client.new('sessionvm.0e6avx.0001.use1.cache.amazonaws.com:11211', options)
-    dallic.delete(self.current_user.remember_token)
+    #options = { :namespace => "sessionsvm", :compress => true }
+    #dallic = Dalli::Client.new('sessionvm.0e6avx.0001.use1.cache.amazonaws.com:11211', options)
+    #dallic.delete(self.current_user.remember_token)
     self.current_user = nil
     cookies.delete(:remember_token)
   end
