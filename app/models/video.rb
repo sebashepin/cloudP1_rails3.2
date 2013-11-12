@@ -3,6 +3,7 @@ class Video
   #include Dynamoid::Paperclip
   extend CarrierWave::Mount
   #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
+  attr_accessible :name, :file, :user_id, :path, :id
   field :name
   #field :video
   field :user_id
