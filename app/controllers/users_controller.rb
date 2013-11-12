@@ -73,7 +73,7 @@ class UsersController < ApplicationController
  
     container = service.directories.get('videofiles')
 
-    File.open(path, 'rwb:ASCII-8BIT') do |io|
+    File.open(path, 'rb') do |io|
       directory.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
                               :body => io)
     end
