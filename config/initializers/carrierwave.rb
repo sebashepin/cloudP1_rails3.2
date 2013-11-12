@@ -8,7 +8,7 @@ if Rails.env.production?
       :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
     }
     config.fog_directory = 'videofiles'
-    config.fog_host = '864a675977a58baaf6f2-10c51ea795fac9f637145bfc62a24893.r83.cf5.rackcdn.com'
+    config.asset_host = '864a675977a58baaf6f2-10c51ea795fac9f637145bfc62a24893.r83.cf5.rackcdn.com'
     #config.asset_host    = "c000000.cdn.rackspacecloud.com"
     #config.fog_directory  = "videostorage"    # required
     #config.asset_host       = "https://#{ENV['VIDEOM_AWS_S3_BUCKET_NAME']}.s3.amazonaws.com"            # optional, defaults to nil
