@@ -1,0 +1,9 @@
+development:
+    container: 'videofiles'
+    username: ENV['RACKSPACE_API_USER']
+    api_key: ENV['RACKSPACE_API_KEY']
+
+production:
+    container: 'videofiles'
+    username: ENV['RACKSPACE_API_USER']
+    api_key: ENV['RACKSPACE_API_KEY']

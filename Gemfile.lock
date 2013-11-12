@@ -50,12 +50,11 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.7.1)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.1.6)
+    cloudfiles (1.5.0.2)
+      json
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -131,6 +130,9 @@ GEM
     net-ssh (2.7.0)
     nokogiri (1.5.10)
     origin (1.1.0)
+    paperclip-cloudfiles (2.3.10.1)
+      activerecord
+      activesupport
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -231,7 +233,7 @@ DEPENDENCIES
   bootstrap-will_paginate (= 0.0.9)
   bson_ext
   capybara (= 2.1.0)
-  carrierwave
+  cloudfiles
   coffee-rails
   cucumber-rails (= 1.4.0)
   dalli
@@ -244,6 +246,7 @@ DEPENDENCIES
   libnotify (= 0.8.0)
   mongo
   mongoid
+  paperclip-cloudfiles
   railroady
   rails (= 3.2.13)
   rails-erd

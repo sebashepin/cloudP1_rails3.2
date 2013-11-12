@@ -1,7 +1,7 @@
-class Video 
+class Video < ActiveRecord::Base 
   include Mongoid::Document
   #include Dynamoid::Paperclip
-  extend CarrierWave::Mount
+  #extend CarrierWave::Mount
   #attr_accessible :name, :video, :user_id, :path, :id, :video_converted
   attr_accessible :name, :file, :user_id, :path, :id
   field :name
@@ -15,9 +15,13 @@ class Video
   #field :video_file_size
   #field :video_updated_at
   #field :video_file_name
-  #field :file
-  mount_uploader :file, VideoUploader
+  field :file
   validates :name, :presence => true
+
+  has_attached_file :file
+     :storage => :cloud_files,
+     :cloudfiles_credentials =>  "#{RAILS_ROOT}/config/rackspace.yml",
+     :path => ":attachment/:id/:timestamp_:style.:extension"
 
   #has_dynamoid_attached_file :video
   
