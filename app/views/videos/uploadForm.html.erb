@@ -1,9 +1,9 @@
 <div class="hero-unit">
-        <%= form_tag( {:action => 'video/upload'}, :multipart => 'true') do  %>
+        <%= form_tag( {:action => 'upload'}, :multipart => 'true') do  %>
         <%= label_tag 'Name', nil, :for => :name %>
         <%= text_field_tag :name %>
-        <%= label_tag 'File Path', nil, :for => :file %>
-        <%= file_field_tag :file %>
+        <%= label_tag 'File Path', nil, :for => :datafile %>
+        <%= file_field_tag :datafile %>
 
         <br/>
         <%= submit_tag "Submit" %>

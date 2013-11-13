@@ -1,4 +1,4 @@
-<div class="hero-unit">
+<div class="hero-unit">a
         <%= form_tag( {:action => 'upload'}, :multipart => 'true') do  %>
         <%= label_tag 'Name', nil, :for => :name %>
         <%= text_field_tag :name %>
