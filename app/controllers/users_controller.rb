@@ -52,12 +52,11 @@ class UsersController < ApplicationController
     directory = "public/uploads"
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(params[:datafile].read) }
-    flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
-    redirect_to user_path(params[:user_id])
-#    @uvideo = Video.new
-#    @uvideo.name = params[:name]
-#    @uvideo.user_id = params[:user_id]
-#    @uvideo.estado =  Video::PROCESSING_STATE
+
+    @uvideo = Video.new
+    @uvideo.name = params[name]
+    @uvideo.user_id = params[:user_id]
+    @uvideo.estado =  Video::PROCESSING_STATE
 #    uploaded_io = params[:file]
 #    path = "public/uploads/"+uploaded_io.original_filename
 
@@ -68,7 +67,7 @@ class UsersController < ApplicationController
 #    #uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
 #    #@uvideo.file = uploadPath
 #    #suffix = File.absolute_path(path).split(".")[1]
-#    key = File.basename(path)
+     key = File.basename(path)
 #    puts "Key"
 #    puts key
 #    puts "Path"
@@ -78,23 +77,23 @@ class UsersController < ApplicationController
 #    #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
    
 
-#    if @uvideo.save
-#      service = Fog::Storage.new(
-#        :provider             => 'Rackspace',
-#        :rackspace_username   => ENV['RACKSPACE_API_USER'],
-#        :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
-#      )
+    if @uvideo.save
+      service = Fog::Storage.new(
+        :provider             => 'Rackspace',
+        :rackspace_username   => ENV['RACKSPACE_API_USER'],
+        :rackspace_api_key    => ENV['RACKSPACE_API_KEY']
+      )
 
-#      container = service.directories.get('videofiles')
+      container = service.directories.get('videofiles')
+#       this path ▼ is the path for the file inside the dyno or instance             
+      File.open(path, 'rb') do |io|
+        container.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
+                                :body => io)
+      end
 
-#      File.open(path, 'rb') do |io|
-#        directory.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
-#                                :body => io)
-#      end
-
-#      flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
-#      redirect_to user_path(@uvideo.user_id)
-#    end
+      flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
+      redirect_to user_path(@uvideo.user_id)
+    end
     
 
   end
