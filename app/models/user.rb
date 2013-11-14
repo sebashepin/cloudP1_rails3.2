@@ -2,7 +2,6 @@ class User
   include Mongoid::Document
   #lets see if this next line doesnt fuck up
   #attr_accessible :name, :email, :password, :password_confirmation
-  field :id
   field :name
   field :email
   field :password
