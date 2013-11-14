@@ -6,12 +6,12 @@
 <div class="row">
   <div class="center hero-unit">
     <div class="userVideos" style="margin: 0 0 0 60px;">
-	<% Video.where(user_id: @user._id).each do |video|  %>
+	<% Video.where(user_id: @user.id).each do |video|  %>
           <% if video.estado==1 %>
 	    <div class="uv">
 	      <div id="myElement<%= video._id %>">Loading the player...</div>
 	      <script type="text/javascript">
-		      jwplayer("myElement<%= video._id %>").setup({
+		      jwplayer("myElement<%= video.id %>").setup({
 			    file: "<%= video.path %>",
 			    width: 320,
 			    height: 240,
@@ -46,11 +46,11 @@
 <!--<li><a href="/video/uploadForm">Upload Videos</a></li> -->
 <div class="hero-unit">
         <%= form_tag( {:action => 'upload'}, :multipart => 'true') do  %>
-        <%= label_tag 'Name', nil, :for => :name %>
+        <%= label_tag 'name'%>
         <%= text_field_tag :name %>
-        <%= label_tag 'File Path', nil, :for => :datafile %>
+        <%= label_tag 'File Path'%>
         <%= file_field_tag :datafile %>
-        <%= hidden_field_tag :user_id, @user._id %>
+        <%= hidden_field_tag :user_id, @user.id %>
         <br/>
         <%= submit_tag "Submit" %>
     <% end %>
