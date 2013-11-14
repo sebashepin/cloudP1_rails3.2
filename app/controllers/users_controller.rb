@@ -48,7 +48,6 @@ class UsersController < ApplicationController
   def upload
 
     name = params[:datafile].original_filename
-    #name = 'diermo'
     directory = "public/uploads"
     path = File.join(directory, name)
     File.open(path, "wb") { |f| f.write(params[:datafile].read) }
@@ -57,25 +56,7 @@ class UsersController < ApplicationController
     @uvideo.name = params[name]
     @uvideo.user_id = params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
-#    uploaded_io = params[:file]
-#    path = "public/uploads/"+uploaded_io.original_filename
-
-#    #File.open(path, 'wb:ASCII-8BIT') do |file|
-#    #  file.write(uploaded_io.read)
-#    #end
-
-#    #uploadPath = "public/uploads/" + File.absolute_path(path).split('public/uploads/')[1]
-#    #@uvideo.file = uploadPath
-#    #suffix = File.absolute_path(path).split(".")[1]
-     key = File.basename(path)
-#    puts "Key"
-#    puts key
-#    puts "Path"
-#    puts path
-
-#    #container.files.create :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s, :body => File.open(path)
-#    #AWS::S3.new.buckets['co.videocloud.bucket'].objects['public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s].write(:file => path)
-   
+    key = File.basename(path)
 
     if @uvideo.save
       service = Fog::Storage.new(
