@@ -13,7 +13,7 @@ Cloud32::Application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/home',    to: 'static_pages#home',    via: 'get'
   match '/upload',    to: 'users#upload',       via: 'post'
-  match '/video/uploadForm',    to: 'videos#uploadForm', via: 'get'
+  #match '/video/uploadForm',    to: 'videos#uploadForm', via: 'get'
   match '/video/upload',    to: 'videos#upload', via: 'post'
   
   #Delayed Job

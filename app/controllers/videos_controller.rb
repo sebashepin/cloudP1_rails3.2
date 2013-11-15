@@ -42,6 +42,7 @@ class VideosController < ApplicationController
   end	
 
   def upload
+    =begin
     @uvideo = Video.new	
     @uvideo.name = params[:name]
     @uvideo.user_id = session[:user_id]
@@ -62,7 +63,7 @@ class VideosController < ApplicationController
     Rails.root.join('public', 'mp4', target_filename)
     key = File.basename(path)
     AWS::S3.new.buckets['co.videocloud.bucket'].objects[key].write(:file => path)
-
+    =end
     if @uvideo.save
       flash[:success] = 'Thank you! We have received the video. You may see it on your profile soon.'
       redirect_to user_path(@user)
