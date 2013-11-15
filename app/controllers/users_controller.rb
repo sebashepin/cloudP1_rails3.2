@@ -56,7 +56,8 @@ class UsersController < ApplicationController
     @uvideo.name = params[:name]
     @uvideo.user_id = params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
-
+    
+    key = File.basename(path)
     if @uvideo.save!
       
       service = Fog::Storage.new(
