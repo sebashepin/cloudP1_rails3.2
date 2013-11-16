@@ -57,7 +57,10 @@ class UsersController < ApplicationController
     @uvideo.user_id = params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
     
+    cloudfilespath='public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s 
     key = File.basename(path)
+    @uvideo.path=cloudfilespath
+
     if @uvideo.save!
       
       service = Fog::Storage.new(
@@ -69,7 +72,7 @@ class UsersController < ApplicationController
       container = service.directories.get('videofiles')
 #      this path ▼ is the path for the file inside the dyno or instance             
       File.open(path, 'rb') do |io|
-        container.files.create( :key => 'public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s,
+        container.files.create( :key => cloudsfilepath,
                                 :body => io)
       end
 
