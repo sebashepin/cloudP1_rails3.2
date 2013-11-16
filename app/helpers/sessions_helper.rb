@@ -1,9 +1,13 @@
 module SessionsHelper
 
 def sign_in(user)
-    remember_token = User.new_remember_token
-    cookies.permanent[:remember_token] = remember_token
-    user.update_attribute(:remember_token, User.encrypt(remember_token))
+    un_remember_token = User.new_remember_token
+    cookies.permanent[:remember_token] = un_remember_token
+    options = { :namespace => "sessionsvm", :compress => true }
+    dallic = Dalli::Client.new
+    encrypted = User.encrypt(un_remember_token)
+    dallic.set(encrypted, user.id)
+    user.update_attribute(:remember_token, encrypted)
     self.current_user = user
   end
 
@@ -16,8 +20,11 @@ def sign_in(user)
   end
 
   def current_user
-    remember_token  = User.encrypt(cookies[:remember_token])
-    @current_user ||= User.find_by(remember_token: remember_token)
+    remember_token = User.encrypt(cookies[:remember_token])
+    options = { :namespace => "sessionsvm", :compress => true }
+    dallic = Dalli::Client.new
+    userid = dallic.get(User.encrypt(cookies[:remember_token]))
+    @current_user ||= User.where(id: userid).first
   end
 
   def current_user?(user)

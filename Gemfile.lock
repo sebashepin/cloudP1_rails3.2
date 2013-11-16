@@ -112,6 +112,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcachier (0.0.2)
     mime-types (1.25)
     mongo (1.9.2)
       bson (~> 1.9.2)
@@ -238,6 +239,7 @@ DEPENDENCIES
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)
   libnotify (= 0.8.0)
+  memcachier
   mongo
   mongoid
   railroady
