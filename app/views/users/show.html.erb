@@ -6,8 +6,7 @@
 <div class="row">
   <div class="center hero-unit">
     <div class="userVideos" style="margin: 0 0 0 60px;">
-	<% Video.where(user_id: '52816029e64c1eb7ce000001').each do |video|  %>
-          <%=video.name%>
+	<% Video.where(user_id: "#{@user.id}").each do |video|  %>
           <% if video.estado==1 %>
 	    <div class="uv">
 	      <div id="myElement<%= video._id %>">Loading the player...</div>
