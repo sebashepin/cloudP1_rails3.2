@@ -71,7 +71,7 @@ class UsersController < ApplicationController
       container = service.directories.get('videofiles')
 #      this path ▼ is the path for the file inside the dyno or instance             
       File.open(path, 'rb') do |io|
-        container.files.create( :key => cloudsfilepath,
+        container.files.create( :key => cloudfilespath,
                                 :body => io)
       end
 
