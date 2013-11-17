@@ -6,7 +6,7 @@
 <div class="row">
   <div class="center hero-unit">
     <div class="userVideos" style="margin: 0 0 0 60px;">
-	<% Video.find_by(user_id: @user.id).each do |video|  %>
+	<% Video.where(:user_id => @user.id).each do |video|  %>
           <%=video.name%>
           <% if video.estado==1 %>
 	    <div class="uv">
