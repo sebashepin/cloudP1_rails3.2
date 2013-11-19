@@ -45,7 +45,7 @@ class Video
   end
 
   def process_video
-    if self.estado==0
+    if self.estado==Video::PROCESSING_STATE
       service = Fog::Storage.new(
         :provider             => 'Rackspace',
         :rackspace_username   => ENV['RACKSPACE_API_USER'],
@@ -70,10 +70,10 @@ class Video
       video_converted_url = "#{Rails.root}/tmp/converted_#{UUIDTools::UUID.random_create.hexdigest}_"+video_name[0,video_name.size-4]+'.mp4'
       
       movie.transcode(video_converted_url, options)
-      
+      puts "Movie friggin' transcoded'"
       cloudfilespath='public/'+'uploads/'+self.user_id.to_s+"/"+video_name.to_s+'.mp4'
       File.open(video_converted_url, 'rb') do |io|
-        container.files.create( :key => cloudfilespath,
+        directory.files.create( :key => cloudfilespath,
                                 :body => io)
       end
       File.delete(video_converted_url)

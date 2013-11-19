@@ -57,8 +57,10 @@ class UsersController < ApplicationController
     @uvideo.user_id = params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
     #key = File.basename(path)    
+    videoformat = File.basename(path)   
+    videoformat = videoformat.split('.').last
     key=UUIDTools::UUID.random_create;
-    cloudfilespath='public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s 
+    cloudfilespath='public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s+"."+videoformat
     @uvideo.path=cloudfilespath
 
     if @uvideo.save!
