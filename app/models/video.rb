@@ -59,6 +59,7 @@ class Video
       File.open(routetofile, 'w') do | f |
         directory.files.get(self.path) do | data, remaining, content_length |
         f.syswrite data
+        end
       end
       
       movie = FFMPEG::Movie.new(routetofile)
