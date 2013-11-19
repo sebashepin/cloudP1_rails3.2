@@ -8,7 +8,7 @@ Videos
 
 <ul class="videos">
 
-<% @videos.each do |video|  %>
+<% Video.where(estado: Video::CONVERTED_STATE).each do |video|  %>
             <div class="uv">
                 <div id="myElement<%= video.id %>">Loading the player...</div>
                 <script type="text/javascript">
@@ -20,7 +20,7 @@ Videos
                       });
                  </script>
             </div>
-     <% end %>
+<% end %>
             </ul>
 
 
