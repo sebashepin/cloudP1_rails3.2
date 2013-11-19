@@ -24,7 +24,7 @@ def sign_in(user)
     #options = { :namespace => "sessionsvm", :compress => true }
     #dallic = Dalli::Client.new
     #userid = dallic.get(User.encrypt(cookies[:remember_token]))
-    @current_user ||= User.where(id: userid).first
+    @current_user ||= User.find_by(remember_token: remember_token)
   end
 
   def current_user?(user)
