@@ -1,4 +1,5 @@
 require 'fog'
+require 'uuidtools'
 class UsersController < ApplicationController
   
   #before_filter :signed_in_user, only: [:index, :edit, :update, :show]
@@ -56,7 +57,8 @@ class UsersController < ApplicationController
     @uvideo.name = params[:name]
     @uvideo.user_id = params[:user_id]
     @uvideo.estado =  Video::PROCESSING_STATE
-    key = File.basename(path)    
+    #key = File.basename(path)    
+    key=UUIDTools::UUID.random_create;
     cloudfilespath='public/'+'uploads/'+@uvideo.user_id.to_s+"/"+key.to_s 
     @uvideo.path=cloudfilespath
 
