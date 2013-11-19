@@ -79,7 +79,6 @@ class Video
       self.estado = CONVERTED_STATE
       self.path = cloudfilespath
       self.save
-    end
-    
+    end  
   end
-
+end
