@@ -37,7 +37,7 @@ class Video
   #validates_attachment_presence :video
 
   def convert_video
-    #self.delay.process_video
+    self.delay.process_video
     #this fucking shit wasnt working wiuth queues so it had to be done manually    
     #@sqs=AWS::SQS.new
     #@queue=@sqs.queues.create("queue-videocloud")
