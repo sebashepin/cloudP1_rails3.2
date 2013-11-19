@@ -63,18 +63,6 @@ class Video
       File.delete(video_converted_url)
       self.estado = CONVERTED_STATE
       self.save
-
-      ses = AWS::SimpleEmailService.new()
-      email = User.find_by_id(self.user_id).email
-      identity = ses.identities.verify('le.solorzano10@uniandes.edu.co')
-      if(identity.verified?)
-      ses.send_email(
-        :subject => 'Video conversion complete',
-        :from => 'le.solorzano10@uniandes.edu.co',
-        :to => email,
-        :body_text => 'Your video ' + self.name + ' has been converted you can now check it out in you profile at VIDEOS-L-o-ROR')
-        puts "email sent to "+email
-      end
     end
   end
 end
