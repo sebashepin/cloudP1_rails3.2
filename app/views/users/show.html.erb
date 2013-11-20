@@ -10,16 +10,7 @@
         <% Video.where(user_id: anid.to_s).each do |video|  %>
           <% if video.estado==1 %>
 	    <div class="uv">
-
-        <div id="myElement<%= video._id %>">Loading the player...</div>
-                 <script type="text/javascript">
-                     jwplayer("myElement<%= video.id %>").setup({
-                       file: "<%= 'http://864a675977a58baaf6f2-10c51ea795fac9f637145bfc62a24893.r83.cf5.rackcdn.com/' + video.path %>",
-                       width: 320,
-                       height: 240,
-                       title: "<%= video.name %>"
-                   });
-                 </script>
+        
              <% videourl='http://864a675977a58baaf6f2-10c51ea795fac9f637145bfc62a24893.r83.cf5.rackcdn.com/'+video.path %>
              <%= video_tag videourl, :size => "320x240", :controls => true %>
             
