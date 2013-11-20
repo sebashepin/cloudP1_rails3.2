@@ -85,6 +85,10 @@ class Video
       self.estado = CONVERTED_STATE
       self.path = cloudfilespath
       self.save
+
+      current_user = User.find(self.user_id) 
+
+      Pony.mail(:to => current_user.email, :from => 'noreply@videocloud.com', :subject => 'Conversión de video' , :body => 'Su video ' + self.name + ' ha sido publicado')
     end  
   end
 end

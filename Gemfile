@@ -12,6 +12,9 @@ gem 'delayed_job_ironmq'
 # Monitoring
 gem "hirefire-resource"
 
+# Mailer
+gem 'pony'
+
 gem 'rails_12factor', '0.0.2'
 gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '2.3.2.0'

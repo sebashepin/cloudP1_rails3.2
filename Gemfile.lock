@@ -141,6 +141,8 @@ GEM
     nokogiri (1.5.10)
     origin (1.1.0)
     polyglot (0.3.3)
+    pony (1.5.1)
+      mail (>= 2.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -260,6 +262,7 @@ DEPENDENCIES
   memcachier
   mongo
   mongoid
+  pony
   railroady
   rails (= 3.2.13)
   rails-erd
