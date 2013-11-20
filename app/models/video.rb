@@ -70,11 +70,14 @@ class Video
       video_converted_url = "#{Rails.root}/tmp/converted_#{UUIDTools::UUID.random_create.hexdigest}_"+video_name[0,video_name.size-4]+'.mp4'
       
       movie.transcode(video_converted_url, options)
-      puts "Movie friggin' transcoded'"
       cloudfilespath='public/'+'uploads/'+self.user_id.to_s+"/"+video_name.to_s+'.mp4'
+      headers = {
+        "Content-Type"        => "video/mp4"
+      }
       File.open(video_converted_url, 'rb') do |io|
-        directory.files.create( :key => cloudfilespath,
-                                :body => io)
+        #directory.files.create( :key => cloudfilespath,
+        #                        :body => io)
+        service.put_object('videofiles',cloudfilespath,io,headers)
       end
       File.delete(video_converted_url)
       self.estado = CONVERTED_STATE
