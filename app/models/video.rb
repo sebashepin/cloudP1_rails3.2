@@ -66,6 +66,7 @@ class Video
       #options = {video_codec: "libx264",
       #          audio_codec: "libfaac"}
       options = {video_codec: "libtheora",
+          audio_codec: "libvorbis",
         custom: "-qscale:v 10"
       }
       video_name = key.to_s.split('.').first
