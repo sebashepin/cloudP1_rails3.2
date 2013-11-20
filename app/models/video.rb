@@ -65,12 +65,14 @@ class Video
       movie = FFMPEG::Movie.new(routetofile)
       #options = {video_codec: "libx264",
       #          audio_codec: "libfaac"}
-      options = {video_codec: "libvorbis"}
+      options = {video_codec: "libtheora",
+        custom: "-qscale:v 10"
+      }
       video_name = key.to_s.split('.').first
-      video_converted_url = "#{Rails.root}/tmp/converted_#{UUIDTools::UUID.random_create.hexdigest}_"+video_name[0,video_name.size-4]+'.ogg'
+      video_converted_url = "#{Rails.root}/tmp/converted_#{UUIDTools::UUID.random_create.hexdigest}_"+video_name[0,video_name.size-4]+'.ogv'
       
       movie.transcode(video_converted_url, options)
-      cloudfilespath='public/'+'uploads/'+self.user_id.to_s+"/"+video_name.to_s+'.ogg'
+      cloudfilespath='public/'+'uploads/'+self.user_id.to_s+"/"+video_name.to_s+'.ogv'
       headers = {
         "Content-Type"        => "video/ogg"
       }
